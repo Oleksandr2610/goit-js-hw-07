@@ -3,45 +3,36 @@ function getRandomHexColor() {
     .toString(16)
     .padStart(6, 0)}`;
 }
-function getRandomHexColor() {
-  return `#${Math.floor(Math.random() * 16777215)
-    .toString(16)
-    .padStart(6, 0)}`;
-}
 
-const userInput = document.querySelector("input");
-const createButton = document.querySelector("[data-create]");
-const destroyButton = document.querySelector("[data-destroy]");
-const boxesDiv = document.querySelector("#boxes");
+  const controls = document.querySelector('#controls');
+  const input = controls.querySelector('input');
+  const createButton = controls.querySelector('[data-create]');
+  const destroyButton = controls.querySelector('[data-destroy]');
+  const boxesContainer = document.querySelector('#boxes');
 
-createButton.addEventListener("click", () => {
-  const amount = Number(userInput.value);
-  if (amount >= 1 && amount <= 100) {
-    createBoxes(amount);
-    userInput.value = "";
+  createButton.addEventListener('click', () => {
+    const amount = parseInt(input.value);
+
+    if (amount >= 1 && amount <= 100) {
+      createBoxes(amount);
+      input.value = '';
+    }
+  });
+
+  destroyButton.addEventListener('click', destroyBoxes);
+
+  function createBoxes(amount) {
+    destroyBoxes(); // clear previous boxes
+
+    for (let i = 0; i < amount; i++) {
+      const box = document.createElement('div');
+      box.style.backgroundColor = getRandomHexColor();
+      box.style.width = `${30 + i * 10}px`;
+      box.style.height = `${30 + i * 10}px`;
+      boxesContainer.appendChild(box);
+    }
   }
-});
 
-destroyButton.addEventListener("click", destroyBoxes);
-
-function createBoxes(amount) {
-  boxesDiv.innerHTML = "";
-
-  let initialBoxSize = 30;
-  let boxSizeIncrement = 10;
-  let size = 30;
-  for (let i = 0; i < amount; i++) {
-    const box = document.createElement("div");
-    box.classList.add("box");
-    box.style.width = `${initialBoxSize}px`;
-    box.style.height = `${initialBoxSize}px`;
-    box.style.backgroundColor = getRandomHexColor();
-    boxesDiv.appendChild(box);
-
-    initialBoxSize += boxSizeIncrement;
+  function destroyBoxes() {
+    boxesContainer.innerHTML = '';
   }
-}
-
-function destroyBoxes() {
-  boxesDiv.innerHTML = "";
-}
