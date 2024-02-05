@@ -1,0 +1,35 @@
+body {
+  color: #2e2f42;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5; /* 150% */
+  letter-spacing: 0.04em;
+}
+
+h1,
+#name-output {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.33; /* 133.333% */
+}
+
+#name-input {
+  width: 360px;
+  height: 40px;
+  flex-shrink: 0;
+  margin-bottom: 16px;
+}
+
+#name-input::placeholder {
+  padding: 8px 16px;
+  color: #2e2f42;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5; /* 150% */
+  letter-spacing: 0.04em;
+}
